@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心慈_Cindy_ — 專業木地板與室內裝修</title>
+  <meta name="description" content="心慈_Cindy_，專業木地板、牆板、窗簾、壁癌處理。代理ALSA木地板/SPC/六角磚/牆板/圓弧造型，為您打造溫暖舒適的居家空間。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== CSS TOKEN SYSTEM ===== */
+    :root {
+      /* Color System - 木質暖色調 */
+      --clr-bg-primary: #1C1410;
+      --clr-bg-secondary: #2A1F18;
+      --clr-bg-card: #342820;
+      --clr-wood-dark: #8B5E3C;
+      --clr-wood-medium: #A67C52;
+      --clr-wood-light: #C4A77D;
+      --clr-cream: #F5F0E8;
+      --clr-forest: #4A6741;
+      --clr-forest-light: #5D7A52;
+      --clr-text-primary: #F5F0E8;
+      --clr-text-secondary: #B8A89A;
+      --clr-text-muted: #7A6A5A;
+      --clr-border: rgba(166, 124, 82, 0.2);
+
+      /* Typography */
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Noto Sans TC', sans-serif;
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+      --text-hero: clamp(2.75rem, 2rem + 3.75vw, 5.5rem);
+
+      /* Spacing Scale */
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-24: 6rem;
+      --space-section: clamp(5rem, 4rem + 5vw, 9rem);
+
+      /* Layout */
+      --container-max: 1280px;
+      --container-padding: clamp(1rem, 0.5rem + 2.5vw, 3rem);
+      --grid-gap: clamp(1rem, 0.8rem + 1vw, 1.75rem);
+
+      /* Effects */
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+      --shadow-glow: 0 0 30px rgba(139, 94, 60, 0.25);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+      --transition-slow: 400ms ease-out;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-bg-primary);
+      color: var(--clr-text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-4) 0;
+      background: rgba(28, 20, 16, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--clr-border);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+    .header.scrolled {
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--clr-text-primary);
+    }
+    .logo span { color: var(--clr-wood-dark); }
+    .nav { display: flex; gap: var(--space-8); }
+    .nav a {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--clr-text-secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--clr-wood-dark);
+      transition: width var(--transition-base);
+    }
+    .nav a:hover { color: var(--clr-wood-dark); }
+    .nav a:hover::after { width: 100%; }
+    .btn-primary-wood {
+      padding: var(--space-3) var(--space-6);
+      background: var(--clr-wood-dark);
+      border: 1.5px solid var(--clr-wood-dark);
+      color: var(--clr-cream);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .btn-primary-wood:hover {
+      background: var(--clr-wood-medium);
+      border-color: var(--clr-wood-medium);
+      box-shadow: var(--shadow-glow);
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .header-cta {
+      padding: var(--space-3) var(--space-6);
+      background: transparent;
+      border: 1.5px solid var(--clr-wood-dark);
+      color: var(--clr-wood-dark);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .header-cta:hover {
+      background: var(--clr-wood-dark);
+      color: var(--clr-cream);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--clr-wood-dark);
+      transition: all var(--transition-base);
+      border-radius: 2px;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 20, 16, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 150;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-8);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-base), visibility var(--transition-base);
+    }
+    .mobile-overlay.active { opacity: 1; visibility: visible; }
+    .mobile-overlay a {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      color: var(--clr-text-primary);
+      transition: color var(--transition-fast);
+      letter-spacing: 0.05em;
+    }
+    .mobile-overlay a:hover { color: var(--clr-wood-dark); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 60%, rgba(139, 94, 60, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(74, 103, 65, 0.15) 0%, transparent 40%),
+        linear-gradient(180deg, #1C1410 0%, #2A1F18 50%, #1C1410 100%);
+      z-index: 1;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(28, 20, 16, 0.3) 0%,
+        rgba(28, 20, 16, 0.1) 30%,
+        rgba(28, 20, 16, 0.4) 70%,
+        rgba(28, 20, 16, 0.9) 100%
+      );
+      z-index: 2;
+    }
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, rgba(196, 167, 125, 0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 70%, rgba(139, 94, 60, 0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 50%, rgba(166, 124, 82, 0.3) 0%, transparent 100%);
+      background-size: 300px 300px, 400px 400px, 200px 200px;
+      animation: wood-drift 12s ease-in-out infinite alternate;
+    }
+    @keyframes wood-drift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-30px, -20px); }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      max-width: 900px;
+      padding: var(--space-section) var(--container-padding);
+    }
+    .hero-tag {
+      display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      background: rgba(139, 94, 60, 0.2);
+      border: 1px solid var(--clr-wood-dark);
+      border-radius: 100px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clr-wood-light);
+      margin-bottom: var(--space-6);
+      animation: glow-pulse-wood 2.5s ease-in-out infinite;
+    }
+    @keyframes glow-pulse-wood {
+      0% { box-shadow: 0 0 10px rgba(139, 94, 60, 0.2); }
+      50% { box-shadow: 0 0 25px rgba(139, 94, 60, 0.4); }
+      100% { box-shadow: 0 0 10px rgba(139, 94, 60, 0.2); }
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-6);
+    }
+    .hero-title .line-wood { color: var(--clr-wood-dark); }
+    .hero-title em {
+      font-style: italic;
+      color: var(--clr-text-secondary);
+      font-size: 0.7em;
+    }
+    .hero-sub {
+      font-size: var(--text-lg);
+      color: var(--clr-text-secondary);
+      margin-bottom: var(--space-12);
+      font-weight: 300;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-actions { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      padding: var(--space-4) var(--space-8);
+      background: var(--clr-wood-dark);
+      color: var(--clr-cream);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 20px rgba(139, 94, 60, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(139, 94, 60, 0.6);
+      background: var(--clr-wood-medium);
+    }
+    .btn-secondary {
+      padding: var(--space-4) var(--space-8);
+      background: transparent;
+      color: var(--clr-text-primary);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      border: 1.5px solid rgba(245, 240, 232, 0.25);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .btn-secondary:hover {
+      border-color: var(--clr-text-primary);
+      background: rgba(245, 240, 232, 0.05);
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: var(--space-8);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--clr-text-muted);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .hero-scroll-hint .arrow { width: 20px; height: 20px; border-right: 2px solid; border-bottom: 2px solid; transform: rotate(45deg); }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== NEWS STRIP ===== */
+    .news-strip {
+      background: var(--clr-bg-secondary);
+      border-top: 1px solid var(--clr-border);
+      border-bottom: 1px solid var(--clr-border);
+      padding: var(--space-4) 0;
+      overflow: hidden;
+    }
+    .news-marquee {
+      display: flex;
+      gap: var(--space-12);
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+    }
+    .news-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--clr-text-secondary);
+      transition: opacity 0.15s ease;
+      animation: wood-flicker 3s ease-in-out infinite;
+    }
+    .news-item:nth-child(odd) { animation-delay: 0.5s; }
+    @keyframes wood-flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    .news-item:hover { opacity: 1 !important; }
+    .news-item .tag {
+      padding: 2px 8px;
+      background: var(--clr-forest);
+      color: var(--clr-cream);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .news-item .divider { color: var(--clr-text-muted); }
+
+    /* ===== PRODUCTS GRID ===== */
+    .products { padding: var(--space-section) 0; }
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-16);
+    }
+    .section-label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-wood-dark);
+      margin-bottom: var(--space-4);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--space-4);
+    }
+    .section-sub {
+      font-size: var(--text-base);
+      color: var(--clr-text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--grid-gap);
+    }
+    .products-grid .card:first-child {
+      grid-column: 1 / 3;
+      grid-row: 1 / 2;
+    }
+    .card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--clr-bg-card);
+      border: 1px solid var(--clr-border);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .card:first-child .card-img { aspect-ratio: 16/9; }
+    .card:hover .card-img { transform: scale(1.05); }
+    .card-body { padding: var(--space-6); }
+    .card-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      background: rgba(74, 103, 65, 0.2);
+      border: 1px solid var(--clr-forest);
+      color: var(--clr-forest-light);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: var(--space-3);
+    }
+    .card-tag.wood { background: rgba(139, 94, 60, 0.2); border-color: var(--clr-wood-dark); color: var(--clr-wood-light); }
+    .card-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+    }
+    .card-desc {
+      font-size: var(--text-sm);
+      color: var(--clr-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===== BRAND STORY ===== */
+    .brand-story {
+      padding: var(--space-section) 0;
+      background: var(--clr-bg-secondary);
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-story::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--clr-wood-dark), transparent);
+      opacity: 0.3;
+    }
+    .brand-story-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+    .brand-text .section-label { text-align: left; }
+    .brand-text .section-title { text-align: left; font-size: var(--text-2xl); margin-bottom: var(--space-6); }
+    .brand-text p {
+      font-size: var(--text-base);
+      color: var(--clr-text-secondary);
+      margin-bottom: var(--space-4);
+      line-height: 1.8;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+    .brand-text p .wood-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      margin-top: 2px;
+    }
+    .brand-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--clr-wood-dark);
+      line-height: 1;
+    }
+    .stat-label { font-size: var(--text-xs); color: var(--clr-text-muted); margin-top: var(--space-1); letter-spacing: 0.1em; text-transform: uppercase; }
+    .brand-visual {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .brand-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .brand-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(139, 94, 60, 0.2) 0%, transparent 60%);
+    }
+
+    /* ===== SERVICES ===== */
+    .services {
+      padding: var(--space-section) 0;
+      background: var(--clr-bg-primary);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--grid-gap);
+    }
+    .service-card {
+      text-align: center;
+      padding: var(--space-8);
+      background: var(--clr-bg-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--clr-wood-dark);
+      box-shadow: var(--shadow-glow);
+    }
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-4);
+      background: rgba(139, 94, 60, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    .service-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+    }
+    .service-desc {
+      font-size: var(--text-sm);
+      color: var(--clr-text-secondary);
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials {
+      padding: var(--space-section) 0;
+      background: var(--clr-bg-secondary);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--clr-wood-dark), transparent);
+      opacity: 0.3;
+    }
+    .testimonials .section-header { margin-bottom: var(--space-12); }
+    .testimonials-marquee-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+    .testimonials-marquee {
+      display: flex;
+      gap: var(--space-6);
+      animation: marquee-horizontal 40s linear infinite;
+      width: max-content;
+    }
+    .testimonials-marquee:hover {
+      animation-play-state: paused;
+    }
+    @keyframes marquee-horizontal {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testimonial-card {
+      flex-shrink: 0;
+      width: 360px;
+      background: var(--clr-bg-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      transition: all var(--transition-base);
+    }
+    .testimonial-card:hover {
+      border-color: var(--clr-wood-dark);
+      box-shadow: 0 0 30px rgba(139, 94, 60, 0.15);
+    }
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--clr-wood-dark);
+      background: var(--clr-wood-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-cream);
+      font-weight: 700;
+    }
+    .testimonial-info {
+      flex: 1;
+    }
+    .testimonial-name {
+      font-weight: 600;
+      font-size: var(--text-base);
+      margin-bottom: var(--space-1);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 2px;
+    }
+    .testimonial-stars svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--clr-wood-dark);
+    }
+    .testimonial-date {
+      font-size: var(--text-xs);
+      color: var(--clr-text-muted);
+    }
+    .testimonial-text {
+      font-size: var(--text-sm);
+      color: var(--clr-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ===== INFO / LOCATION ===== */
+    .info { padding: var(--space-section) 0; }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
+    .info-block { }
+    .info-block-title {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-wood-dark);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .info-list { display: flex; flex-direction: column; gap: var(--space-4); }
+    .info-row { display: flex; gap: var(--space-4); font-size: var(--text-base); }
+    .info-row .label { color: var(--clr-text-muted); min-width: 80px; }
+    .info-row .value { color: var(--clr-text-primary); }
+    .info-row .value a { color: var(--clr-wood-dark); transition: color var(--transition-fast); }
+    .info-row .value a:hover { color: var(--clr-wood-light); }
+    .map-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--clr-bg-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    /* ===== FLOATING SIDEBAR ===== */
+    .floating-sidebar {
+      position: fixed;
+      bottom: var(--space-8);
+      right: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      z-index: 90;
+    }
+    .float-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(42, 31, 24, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--clr-border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      color: var(--clr-text-secondary);
+      position: relative;
+    }
+    .float-btn:hover {
+      border-color: var(--clr-wood-dark);
+      color: var(--clr-wood-dark);
+      box-shadow: 0 0 20px rgba(139, 94, 60, 0.4), 0 0 40px rgba(139, 94, 60, 0.2);
+      transform: scale(1.1);
+    }
+    .float-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+    .float-btn .tooltip {
+      position: absolute;
+      right: calc(100% + 10px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--clr-bg-card);
+      border: 1px solid var(--clr-border);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-xs);
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-fast);
+      pointer-events: none;
+    }
+    .float-btn:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top {
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-base);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ===== CONTACT POPUP ===== */
+    .contact-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 20, 16, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-base);
+    }
+    .contact-popup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .contact-modal {
+      background: var(--clr-bg-card);
+      border: 2px solid var(--clr-wood-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      max-width: 440px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 60px rgba(139, 94, 60, 0.3), 0 0 100px rgba(74, 103, 65, 0.2);
+      animation: modal-glow 2s ease-in-out infinite;
+    }
+    @keyframes modal-glow {
+      0%, 100% { box-shadow: 0 0 40px rgba(139, 94, 60, 0.2), 0 0 80px rgba(74, 103, 65, 0.1); }
+      50% { box-shadow: 0 0 60px rgba(139, 94, 60, 0.4), 0 0 100px rgba(74, 103, 65, 0.3); }
+    }
+    .contact-modal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B5E3C' fill-opacity='0.05'%3E%3Cpath d='M30 0l30 30-30 30L0 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      border-radius: var(--radius-lg);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .contact-close {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--clr-border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-text-muted);
+      transition: all var(--transition-fast);
+    }
+    .contact-close:hover {
+      border-color: var(--clr-wood-dark);
+      color: var(--clr-wood-dark);
+    }
+    .contact-icon {
+      font-size: 48px;
+      margin-bottom: var(--space-4);
+    }
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+      color: var(--clr-text-primary);
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font-size: var(--text-base);
+      color: var(--clr-text-secondary);
+    }
+    .contact-info-item .icon { font-size: 20px; }
+    .contact-info-item a {
+      color: var(--clr-wood-dark);
+      transition: color var(--transition-fast);
+    }
+    .contact-info-item a:hover { color: var(--clr-wood-light); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: var(--space-16) 0 var(--space-8);
+      border-top: 1px solid var(--clr-border);
+      background: var(--clr-bg-primary);
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-12);
+      flex-wrap: wrap;
+      gap: var(--space-8);
+    }
+    .footer-brand .logo { font-size: var(--text-xl); margin-bottom: var(--space-4); }
+    .footer-brand p { font-size: var(--text-sm); color: var(--clr-text-muted); max-width: 280px; }
+    .footer-links { display: flex; gap: var(--space-16); }
+    .footer-col-title {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clr-text-secondary);
+      margin-bottom: var(--space-4);
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: var(--space-3); }
+    .footer-col a { font-size: var(--text-sm); color: var(--clr-text-muted); transition: color var(--transition-fast); }
+    .footer-col a:hover { color: var(--clr-wood-dark); }
+    .footer-bottom {
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--clr-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--text-xs);
+      color: var(--clr-text-muted);
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .footer-bottom a { color: var(--clr-text-muted); transition: color var(--transition-fast); }
+    .footer-bottom a:hover { color: var(--clr-wood-dark); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid .card:first-child { grid-column: 1 / 3; grid-row: auto; }
+      .brand-story-inner { grid-template-columns: 1fr; gap: var(--space-12); }
+      .brand-visual { max-width: 500px; margin: 0 auto; }
+      .testimonial-card { width: 320px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767px) {
+      .nav { display: none; }
+      .hamburger { display: flex; }
+      .products-grid { grid-template-columns: 1fr; }
+      .products-grid .card:first-child { grid-column: 1; }
+      .info-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; }
+      .footer-links { flex-direction: column; gap: var(--space-8); }
+      .brand-stats { grid-template-columns: repeat(3, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      .floating-sidebar { bottom: var(--space-4); right: var(--space-4); }
+      .float-btn { width: 44px; height: 44px; }
+      .testimonial-card { width: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <div class="logo">心慈<span>_Cindy_</span></div>
+      <nav class="nav">
+        <a href="#products">產品項目</a>
+        <a href="#story">品牌故事</a>
+        <a href="#services">服務項目</a>
+        <a href="#info">聯絡資訊</a>
+      </nav>
+      <div class="header-right">
+        <a href="https://line.me/ti/p/~cindy-flooring" target="_blank" rel="noopener" class="header-cta">LINE 諮詢</a>
+        <button class="hamburger" id="hamburger" aria-label="開啟選單">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE OVERLAY MENU -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <a href="#products" class="mobile-link">產品項目</a>
+    <a href="#story" class="mobile-link">品牌故事</a>
+    <a href="#services" class="mobile-link">服務項目</a>
+    <a href="#info" class="mobile-link">聯絡資訊</a>
+    <a href="https://line.me/ti/p/~cindy-flooring" target="_blank" rel="noopener" class="mobile-link" style="color: var(--clr-wood-dark);">LINE 諮詢</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-particles"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🌿 專業室內裝修 · 木地板專家</div>
+      <h1 class="hero-title">
+        心慈<span class="line-wood">_Cindy_</span><br>
+        <em>室內裝修團隊</em>
+      </h1>
+      <p class="hero-sub">用溫暖的木質，為您打造舒適的居家空間。從木地板到牆板，從窗簾到壁癌處理，全方位守護您的家。</p>
+      <div class="hero-actions">
+        <a href="https://line.me/ti/p/~cindy-flooring" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;text-align:center;">立即諮詢</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
+  </section>
+
+  <!-- NEWS STRIP -->
+  <div class="news-strip">
+    <div class="news-marquee" id="marquee">
+      <div class="news-item"><span class="tag">新貨</span>ALSA超耐磨木地板新品上市</div>
+      <div class="divider">◆</div>
+      <div class="news-item">SPC石塑地板限時優惠</div>
+      <div class="divider">◆</div>
+      <div class="news-item"><span class="tag">服務</span>免費到府估價</div>
+      <div class="divider">◆</div>
+      <div class="news-item">壁癌處理工法升級</div>
+      <div class="divider">◆</div>
+      <div class="news-item"><span class="tag">活動</span>舊換新最高折抵$5000</div>
+      <div class="divider">◆</div>
+      <div class="news-item"><span class="tag">新貨</span>ALSA超耐磨木地板新品上市</div>
+      <div class="divider">◆</div>
+      <div class="news-item">SPC石塑地板限時優惠</div>
+      <div class="divider">◆</div>
+      <div class="news-item"><span class="tag">服務</span>免費到府估價</div>
+      <div class="divider">◆</div>
+      <div class="news-item">壁癌處理工法升級</div>
+      <div class="divider">◆</div>
+      <div class="news-item"><span class="tag">活動</span>舊換新最高折抵$5000</div>
+      <div class="divider">◆</div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Products</div>
+        <h2 class="section-title">專業產品項目</h2>
+        <p class="section-sub">精選品質素材，為您的空間注入自然的溫度</p>
+      </div>
+      <div class="products-grid">
+        <div class="card reveal">
+          <img class="card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80" alt="ALSA木地板">
+          <div class="card-body">
+            <span class="card-tag wood">熱銷</span>
+            <h3 class="card-title">ALSA 超耐磨木地板</h3>
+            <p class="card-desc">源自德國工藝，超耐磨表面處理，適用於居家、商業空間，環保F1等級低甲醛。</p>
+          </div>
+        </div>
+        <div class="card reveal">
+          <img class="card-img" src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=600&q=80" alt="SPC石塑地板">
+          <div class="card-body">
+            <span class="card-tag">新品</span>
+            <h3 class="card-title">SPC 石塑地板</h3>
+            <p class="card-desc">防水防潮，安裝簡易，適合浴室、廚房等潮濕區域，性價比極高。</p>
+          </div>
+        </div>
+        <div class="card reveal">
+          <img class="card-img" src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=600&q=80" alt="六角磚">
+          <div class="card-body">
+            <span class="card-tag">設計</span>
+            <h3 class="card-title">六角磚</h3>
+            <p class="card-desc">幾何美學，多種色彩拼接，為空間創造獨一無二的視覺焦點。</p>
+          </div>
+        </div>
+        <div class="card reveal">
+          <img class="card-img" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="牆板">
+          <div class="card-body">
+            <span class="card-tag wood">推薦</span>
+            <h3 class="card-title">裝飾牆板</h3>
+            <p class="card-desc">木質紋理、金屬質感任選，快速安裝，為牆面增添層次與溫度。</p>
+          </div>
+        </div>
+        <div class="card reveal">
+          <img class="card-img" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="圓弧造型">
+          <div class="card-body">
+            <span class="card-tag">工藝</span>
+            <h3 class="card-title">圓弧造型</h3>
+            <p class="card-desc">曲線美學，柔化空間棱角，適用於天花板、牆面收邊，增添設計感。</p>
+          </div>
+        </div>
+        <div class="card reveal">
+          <img class="card-img" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="窗簾">
+          <div class="card-body">
+            <span class="card-tag">軟裝</span>
+            <h3 class="card-title">窗簾</h3>
+            <p class="card-desc">質感布料，遮光、透光多重選擇，量身訂製，完美搭配您的室內風格。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND STORY -->
+  <section class="brand-story" id="story">
+    <div class="container">
+      <div class="brand-story-inner">
+        <div class="brand-text reveal">
+          <div class="section-label">About Us</div>
+          <h2 class="section-title">用專業與用心，守護每一個家</h2>
+          <p>
+            <svg class="wood-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C12 2 8 6 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 6 12 2 12 2Z" fill="#8B5E3C"/>
+              <path d="M12 14C8 14 5 17 5 20C5 21.66 6.34 23 8 23C9.66 23 11 21.66 11 20C11 19 12 18 12 18C12 18 13 19 13 20C13 21.66 14.34 23 16 23C17.66 23 19 21.66 19 20C19 17 16 14 12 14Z" fill="#8B5E3C"/>
+            </svg>
+            <span>心慈_Cindy_ 擁有多年室內裝修經驗，專精於木地板領域，從材料挑選到施工完成，堅持每一個細節都不妥協。</span>
+          </p>
+          <p>
+            <svg class="wood-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C12 2 8 6 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 6 12 2 12 2Z" fill="#8B5E3C"/>
+              <path d="M12 14C8 14 5 17 5 20C5 21.66 6.34 23 8 23C9.66 23 11 21.66 11 20C11 19 12 18 12 18C12 18 13 19 13 20C13 21.66 14.34 23 16 23C17.66 23 19 21.66 19 20C19 17 16 14 12 14Z" fill="#8B5E3C"/>
+            </svg>
+            <span>我們代理的 ALSA 超耐磨木地板，來自德國精湛工藝，環保低甲醛，讓您住得安心。</span>
+          </p>
+          <p>
+            <svg class="wood-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C12 2 8 6 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 6 12 2 12 2Z" fill="#8B5E3C"/>
+              <path d="M12 14C8 14 5 17 5 20C5 21.66 6.34 23 8 23C9.66 23 11 21.66 11 20C11 19 12 18 12 18C12 18 13 19 13 20C13 21.66 14.34 23 16 23C17.66 23 19 21.66 19 20C19 17 16 14 12 14Z" fill="#8B5E3C"/>
+            </svg>
+            <span>不論是新屋裝修或舊屋翻新，心慈_Cindy_ 都能提供最適合您的解決方案。</span>
+          </p>
+          <div class="brand-stats">
+            <div class="stat">
+              <div class="stat-num">500+</div>
+              <div class="stat-label">施作品質</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">8年+</div>
+              <div class="stat-label">產業經驗</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">客戶滿意</div>
+            </div>
+          </div>
+        </div>
+        <div class="brand-visual reveal">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" alt="木地板施工">
+          <div class="brand-visual-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Services</div>
+        <h2 class="section-title">全方位室內裝修服務</h2>
+        <p class="section-sub">從地板到牆面，從窗簾到壁癌，一站式服務</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🪵</div>
+          <h3 class="service-title">木地板施工</h3>
+          <p class="service-desc">ALSA超耐磨木地板、SPC石塑地板，專業施工，品質保固</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">🏠</div>
+          <h3 class="service-title">牆板安裝</h3>
+          <p class="service-desc">裝飾牆板、系統板材，打造質感空間</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">🪟</div>
+          <h3 class="service-title">窗簾訂製</h3>
+          <p class="service-desc">多種布料可選，量身訂製，專業安裝</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">🔧</div>
+          <h3 class="service-title">壁癌處理</h3>
+          <p class="service-desc">專業壁癌根治工程，遠離潮濕困擾</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Reviews</div>
+        <h2 class="section-title">客戶真實推薦</h2>
+        <p class="section-sub">感謝每一位信任心慈_Cindy_ 的客人</p>
+      </div>
+      <div class="testimonials-marquee-wrapper">
+        <div class="testimonials-marquee" id="testimonialsMarquee">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">林</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">林小姐</div>
+                <div class="testimonial-stars">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="testimonial-date">2026.04</div>
+            </div>
+            <p class="testimonial-text">選擇了ALSA超耐磨木地板，施工細心，完成後效果超出預期！整個家都溫暖起來了。</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">陳</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">陳先生</div>
+                <div class="testimonial-stars">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="testimonial-date">2026.03</div>
+            </div>
+            <p class="testimonial-text">壁癌困擾多年，心慈幫我徹底處理好，報價透明合理，非常推薦！</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">王</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">王太太</div>
+                <div class="testimonial-stars">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="testimonial-date">2026.05</div>
+            </div>
+            <p class="testimonial-text">窗簾訂製服務很專業，选了合适的遮光窗帘，孩子房间终于能睡个好觉了！</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">張</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">張先生</div>
+                <div class="testimonial-stars">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="testimonial-date">2026.02</div>
+            </div>
+            <p class="testimonial-text">SPC地板防水效果很好，装在浴室完全没问题，价格也很实惠！</p>
+          </div>
+          <!-- Duplicate for infinite scroll -->
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">林</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">林小姐</div>
+                <div class="testimonial-stars">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="testimonial-date">2026.04</div>
+            </div>
+            <p class="testimonial-text">選擇了ALSA超耐磨木地板，施工細心，完成後效果超出預期！整個家都溫暖起來了。</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">陳</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">陳先生</div>
+                <div class="testimonial-stars">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="testimonial-date">2026.03</div>
+            </div>
+            <p class="testimonial-text">壁癌困擾多年，心慈幫我徹底處理好，報價透明合理，非常推薦！</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">王</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">王太太</div>
+                <div class="testimonial-stars">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="testimonial-date">2026.05</div>
+            </div>
+            <p class="testimonial-text">窗簾訂製服務很專業，选了合适的遮光窗帘，孩子房间终于能睡个好觉了！</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">張</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">張先生</div>
+                <div class="testimonial-stars">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="testimonial-date">2026.02</div>
+            </div>
+            <p class="testimonial-text">SPC地板防水效果很好，装在浴室完全没问题，价格也很实惠！</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO / LOCATION -->
+  <section class="info" id="info">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">聯絡心慈_Cindy_</h2>
+        <p class="section-sub">免費到府估價，歡迎詢問</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-block reveal">
+          <div class="info-block-title">聯絡方式</div>
+          <div class="info-list">
+            <div class="info-row">
+              <span class="label">LINE</span>
+              <span class="value"><a href="https://line.me/ti/p/~cindy-flooring" target="_blank" rel="noopener">@cindy-flooring</a></span>
+            </div>
+            <div class="info-row">
+              <span class="label">電話</span>
+              <span class="value"><a href="tel:0912345678">0912-345-678</a></span>
+            </div>
+            <div class="info-row">
+              <span class="label">服務區域</span>
+              <span class="value">台北市、新北市、桃園</span>
+            </div>
+            <div class="info-row">
+              <span class="label">營業時間</span>
+              <span class="value">週一至週六 09:00 - 18:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-block reveal">
+          <div class="info-block-title">服務項目</div>
+          <div class="info-list">
+            <div class="info-row">
+              <span class="label">地板</span>
+              <span class="value">ALSA超耐磨木地板、SPC石塑地板、六角磚</span>
+            </div>
+            <div class="info-row">
+              <span class="label">牆面</span>
+              <span class="value">裝飾牆板、圓弧造型</span>
+            </div>
+            <div class="info-row">
+              <span class="label">窗簾</span>
+              <span class="value">各式窗簾訂製安裝</span>
+            </div>
+            <div class="info-row">
+              <span class="label">壁癌</span>
+              <span class="value">專業壁癌處理工程</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING SIDEBAR -->
+  <div class="floating-sidebar">
+    <button class="float-btn" id="lineBtn" title="LINE 諮詢">
+      <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.349 0-.63-.285-.63-.629V8.108c0-.345.281-.63.63-.63.346 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      <span class="tooltip">LINE 諮詢</span>
+    </button>
+    <button class="float-btn back-to-top" id="backToTop" title="回到頂部">
+      <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+      <span class="tooltip">回到頂部</span>
+    </button>
+  </div>
+
+  <!-- CONTACT POPUP -->
+  <div class="contact-popup" id="contactPopup">
+    <div class="contact-modal">
+      <button class="contact-close" id="contactClose">✕</button>
+      <div class="contact-icon">📞</div>
+      <h3 class="contact-title">聯絡心慈_Cindy_</h3>
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <span class="icon">💬</span>
+          <a href="https://line.me/ti/p/~cindy-flooring" target="_blank" rel="noopener">LINE：@cindy-flooring</a>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon">📱</span>
+          <a href="tel:0912345678">0912-345-678</a>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon">📍</span>
+          <span>台北市、新北市、桃園</span>
+        </div>
+      </div>
+      <a href="https://line.me/ti/p/~cindy-flooring" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;text-align:center;width:100%;">開啟 LINE 諮詢</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">心慈<span>_Cindy_</span></div>
+          <p>專業木地板與室內裝修，用溫暖的木質，為您打造舒適的居家空間。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <div class="footer-col-title">產品項目</div>
+            <ul>
+              <li><a href="#products">ALSA超耐磨木地板</a></li>
+              <li><a href="#products">SPC石塑地板</a></li>
+              <li><a href="#products">六角磚</a></li>
+              <li><a href="#products">裝飾牆板</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">服務項目</div>
+            <ul>
+              <li><a href="#services">木地板施工</a></li>
+              <li><a href="#services">窗簾訂製</a></li>
+              <li><a href="#services">壁癌處理</a></li>
+              <li><a href="#services">圓弧造型</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">聯絡我們</div>
+            <ul>
+              <li><a href="https://line.me/ti/p/~cindy-flooring" target="_blank" rel="noopener">LINE 諮詢</a></li>
+              <li><a href="tel:0912345678">0912-345-678</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 心慈_Cindy_ 版權所有</p>
+        <p>室內裝修 · 木地板 · 牆板 · 窗簾 · 壁癌處理</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileOverlay.classList.toggle('active');
+    });
+    mobileOverlay.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // LINE button - open popup
+    const lineBtn = document.getElementById('lineBtn');
+    const contactPopup = document.getElementById('contactPopup');
+    const contactClose = document.getElementById('contactClose');
+    lineBtn.addEventListener('click', () => {
+      contactPopup.classList.add('active');
+    });
+    contactClose.addEventListener('click', () => {
+      contactPopup.classList.remove('active');
+    });
+    contactPopup.addEventListener('click', (e) => {
+      if (e.target === contactPopup) {
+        contactPopup.classList.remove('active');
+      }
+    });
+
+    // Counter animation (optional, for future price display)
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseInt(counter.dataset.target);
+      const duration = 1500;
+      const step = target / (duration / 16);
+      let current = 0;
+      const update = () => {
+        current += step;
+        if (current < target) {
+          counter.textContent = Math.floor(current);
+          requestAnimationFrame(update);
+        } else {
+          counter.textContent = target;
+        }
+      };
+      update();
+    });
+  </script>
+</body>
+</html>
